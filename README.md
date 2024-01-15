@@ -1,4 +1,8 @@
-# Vue 3 + Vite
+# Punko Pics 💩
+Simple Photo library built with Vue, Vite, and AWS to store [Punko AI](https://github.com/BiaDd/Punko) generated images.
+
+
+## Vue 3 + Vite
 
 This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
