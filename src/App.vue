@@ -1,7 +1,18 @@
 <script setup>
-import { ref } from "vue";
-import ImageCard from './components/ImageCard.vue'
+import { ref, onMounted } from "vue";
+import { useToast } from "primevue/usetoast";
+import { fetchPictures } from "./api/PunkoPicsAPI";
 
+import ImageCard from './components/ImageCard.vue'
+// toast
+const toast = useToast();
+const images = ref([
+  { url: '/test.png', key: 'draw doodoobia as a robot', labels: ['robot'] },
+  { url: '/test2.png', key: 'you are safe now my child', labels: ['weird'] },
+  { url: '/test3.png', key: 'draw bia waving', labels: [] },
+  { url: '/test4.png', key: 'draw big muscles big arms bia', labels: ['muscles'] },
+  { url: '/test5.png', key: 'draw bia as an old man', labels: ['old'] },
+  { url: '/test6.png', key: 'draw bia as a cat', labels: ['cat', 'animal'] }]);
 const menuItems = ref([
   {
     label: 'Contact',
@@ -19,22 +30,30 @@ const menuItems = ref([
   }
 ]);
 
-const images = ref([
-  { imageLink: '/test.png', prompt: 'draw doodoobia as a robot' },
-  { imageLink: '/test2.png', prompt: 'you are safe now my child' },
-  { imageLink: '/test3.png', prompt: 'draw bia waving' },
-  { imageLink: '/test4.png', prompt: 'draw big muscles big arms bia' },
-  { imageLink: '/test5.png', prompt: 'draw bia as an old man' },
-  { imageLink: '/test6.png', prompt: 'draw bia as a cat' }]);
+onMounted(async () => {
+  images.value = await getImages();
+});
+
+const getImages = async () => {
+  const resImages = await fetchPictures()
+  if (resImages) {
+    return resImages;
+  }
+  else {
+    toast.add({ severity: 'error', summary: 'Error', detail: 'Error loading images from bucket.', life: 3000 });
+    return images.value
+  }
+}
 
 </script>
 
 <template>
   <Menubar class="header" :model="menuItems" />
   <h1 class="title">Punko Pics 💩</h1>
+  <Toast />
   <div class="body">
     <div class="images">
-      <ImageCard v-for="item in images" :imageSrc="item.imageLink" :prompt="item.prompt" />
+      <ImageCard v-for="item in images" :imageSrc="item.url" :prompt="item.key" :labels="item.labels" />
     </div>
   </div>
   <ScrollTop />
