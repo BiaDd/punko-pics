@@ -2,6 +2,7 @@
 import { useToast } from "primevue/usetoast";
 import { ref } from 'vue';
 
+const toast = useToast();
 const { imageSrc, prompt } = defineProps({
     imageSrc: String,
     prompt: String,
@@ -22,9 +23,6 @@ const menuItems = ref([
 const onPromptRightClick = (event) => {
     contextMenu.value.show(event);
 };
-
-// toast
-const toast = useToast();
 
 // copy to clipboard
 const copyToClipboard = () => {
@@ -48,7 +46,6 @@ const copyToClipboard = () => {
                 </p>
             </template>
             <template #footer>
-                <Toast />
                 <Button icon="pi pi-copy" label="Copy Prompt" aria-label="Copy Prompt" rounded @click="copyToClipboard" />
             </template>
         </Card>
