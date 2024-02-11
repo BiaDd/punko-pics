@@ -6,13 +6,7 @@ import { fetchPictures } from "./api/PunkoPicsAPI";
 import ImageCard from './components/ImageCard.vue'
 // toast
 const toast = useToast();
-const images = ref([
-  { url: '/test.png', key: 'draw doodoobia as a robot', labels: ['robot'] },
-  { url: '/test2.png', key: 'you are safe now my child', labels: ['weird'] },
-  { url: '/test3.png', key: 'draw bia waving', labels: [] },
-  { url: '/test4.png', key: 'draw big muscles big arms', labels: ['muscles'] },
-  { url: '/test5.png', key: 'draw bia as an old man', labels: ['old'] },
-  { url: '/test6.png', key: 'draw bia as a cat', labels: ['cat', 'animal'] }]);
+const images = ref([]);
 const menuItems = ref([
   {
     label: 'Contact',
