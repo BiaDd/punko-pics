@@ -1,5 +1,5 @@
 // fetch the pictures from the bucket
-const api_link = import.meta.env.VITE_APP_BACKEND_API || "http://localhost:8000";
+const api_link = import.meta.env.VITE_APP_BACKEND_API;
 const api_key = import.meta.env.VITE_APP_PUNKOPICS_API_KEY;
 
 export const fetchPictures = async () => {
