@@ -10,7 +10,7 @@ const images = ref([
   { url: '/test.png', key: 'draw doodoobia as a robot', labels: ['robot'] },
   { url: '/test2.png', key: 'you are safe now my child', labels: ['weird'] },
   { url: '/test3.png', key: 'draw bia waving', labels: [] },
-  { url: '/test4.png', key: 'draw big muscles big arms bia', labels: ['muscles'] },
+  { url: '/test4.png', key: 'draw big muscles big arms', labels: ['muscles'] },
   { url: '/test5.png', key: 'draw bia as an old man', labels: ['old'] },
   { url: '/test6.png', key: 'draw bia as a cat', labels: ['cat', 'animal'] }]);
 const menuItems = ref([
@@ -35,9 +35,9 @@ onMounted(async () => {
 });
 
 const getImages = async () => {
-  const resImages = await fetchPictures()
-  if (resImages) {
-    return resImages;
+  const resImages = await fetchPictures();
+  if (resImages.status === 'Success') {
+    return resImages.pictures;
   }
   else {
     toast.add({ severity: 'error', summary: 'Error', detail: 'Error loading images from bucket.', life: 3000 });
@@ -53,7 +53,7 @@ const getImages = async () => {
   <Toast />
   <div class="body">
     <div class="images">
-      <ImageCard v-for="item in images" :imageSrc="item.url" :prompt="item.key" :labels="item.labels" />
+      <ImageCard v-for="item in images" :imageSrc="item.url" :prompt="item.key" />
     </div>
   </div>
   <ScrollTop />

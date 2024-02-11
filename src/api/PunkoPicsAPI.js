@@ -1,12 +1,16 @@
 // fetch the pictures from the bucket
+const api_link = import.meta.env.VITE_APP_BACKEND_API || "http://localhost:8000";
+const api_key = import.meta.env.VITE_APP_PUNKOPICS_API_KEY;
+
 export const fetchPictures = async () => {
     try {
-        const res = await fetch(`/pictures`, {
+        const res = await fetch(`${api_link}/pictures`, {
             "method": "GET",
             "headers": {
-                'punkopics-api-key': process.env.VUE_APP_PUNKOPICS_API_KEY
+                'Content-Type': 'application/json',
+                'punkopics-api-key': api_key
             }
-        })
+        });
         if (res.status === 200) {
             return await res.json();
         }
