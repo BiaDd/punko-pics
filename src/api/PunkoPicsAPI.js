@@ -11,7 +11,6 @@ export const generatePicture = async (prompt) => {
             }
         }).then((res) => res.blob())
         .then((blob) => {
-            console.log(blob);
             return URL.createObjectURL(blob);
         });
         
