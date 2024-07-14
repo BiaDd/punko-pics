@@ -1,5 +1,5 @@
 # Punko Pics 💩
-Simple Photo library built with Vue, Vite, and AWS to store [Punko AI](https://github.com/BiaDd/Punko) generated images.
+Simple Photo library built with Vue, Vite, and Supabase to store [Punko AI](https://github.com/BiaDd/Punko) generated images.
 
 
 ## Vue 3 + Vite
